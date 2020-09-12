@@ -6,8 +6,13 @@ var express      =require("express"),
 	mongoose     =require("mongoose");
 
 //APP CONFIG
-mongoose.set('useUnifiedTopology',true);
-mongoose.connect('mongodb://localhost:27017/restful_blog_app', {useNewUrlParser: true});
+mongoose.set('useUnifiedTopology',true);//mongodb://localhost:27017/restful_blog_app
+mongoose.connect('mongodb+srv://garoudev:garou2499@cluster0.pfl6u.mongodb.net/restful_blog?retryWrites=true&w=majority', {useNewUrlParser: true, useCreateIndex: true})
+ .then(()=> {
+	console.log("Connected to DB");
+}).catch(err =>{
+	console.log("ERROR:",err.message);
+});
 app.set("view engine","ejs");
 app.use(express.static("public"));
 app.use(methodOverride("_method"));
