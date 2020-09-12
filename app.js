@@ -6,8 +6,9 @@ var express      =require("express"),
 	mongoose     =require("mongoose");
 
 //APP CONFIG
-mongoose.set('useUnifiedTopology',true);//mongodb://localhost:27017/restful_blog_app
-mongoose.connect('mongodb+srv://garoudev:garou2499@cluster0.pfl6u.mongodb.net/restful_blog?retryWrites=true&w=majority', {useNewUrlParser: true, useCreateIndex: true})
+mongoose.set('useUnifiedTopology',true);
+var url = process.env.DATABASEURL || "mongodb://localhost:27017/restful_blog_app"
+mongoose.connect(url, {useNewUrlParser: true, useCreateIndex: true})
  .then(()=> {
 	console.log("Connected to DB");
 }).catch(err =>{
@@ -108,5 +109,5 @@ app.delete("/blogs/:id",function(req,res){
 
 
 app.listen(process.env.PORT || 3000, process.env.IP, () => {
-    console.log(" yelpCamp server is live");
+    console.log(" server is live");
 });
